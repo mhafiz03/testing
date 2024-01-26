@@ -4,12 +4,14 @@ import cv2
 
 from moildev import Moildev
 
+moildev_path = os.path.dirname(os.path.abspath(sys.argv[0]))
+
 # this is to resize image show
 w = 400
 h = 300
 
-image_1 = cv2.imread("/home/heru-demo/PycharmProjects/test_moildev/moildev/unitest/front.png")
-image_11 = cv2.imread("/home/heru-demo/PycharmProjects/test_moildev/moildev/unitest/20221214_internal_thread.png")
+image_1 = cv2.imread(f"{moildev_path}/moildev/unitest/front.png")
+image_11 = cv2.imread(f"{moildev_path}/moildev/unitest/20221214_internal_thread.png")
 image_2 = cv2.circle(image_11, (1295, 1844), 25, (0, 255, 255), 25)
 ori_image_1 = cv2.resize(image_1, (w, h))
 ori_image_2 = cv2.resize(image_2, (w, h))
@@ -17,7 +19,7 @@ ori_image_2 = cv2.resize(image_2, (w, h))
 cv2.imshow("original image 1", ori_image_1)
 cv2.imshow("original image 2", ori_image_2)
 
-moildev = Moildev("/home/heru-demo/PycharmProjects/test_moildev/moildev/unitest/camera_parameters.json", "entaniya")
+moildev = Moildev(f"{moildev_path}/moildev/unitest/camera_parameters.json", "entaniya")
 
 # anypoint maps mode 1
 map_X, map_Y = moildev.maps_anypoint_mode1(90, 180, 2)
