@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Test</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 900px;
+        }
+
+        .canvas {
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+        }
+
+        .center-text {
+            text-align: center;
+            padding: 20px; 
+            font: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', 'sans-serif';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="air-speed">
+            <canvas id="canvas-air-speed"></canvas>
+            <div class="center-text">Air Speed (Knots)</div>
+        </div>
+        <div id="motor-rpm">
+            <canvas id="canvas-motor-rpm"></canvas>
+            <div class="center-text">Motors (RPM)</div>
+        </div>
+        <div id="vert-speed">
+            <canvas id="canvas-vert-speed"></canvas>
+            <div class="center-text">Vertical Speed (ft/min)</div>
+        </div>
+    </div>
+    
+    <script src="gauge.min.js"></script>
+    <script type="text/javascript">
+        airSpeedGauge = new Gauge(document.getElementById("canvas-air-speed"));
+        motorRpmGauge = new Gauge(document.getElementById("canvas-motor-rpm"));
+        vertSpeedGauge = new Gauge(document.getElementById("canvas-vert-speed"));
+
+        var airSpeedOpts = {
+            angle: -0.25,
+            lineWidth: 0.2,
+            radiusScale:0.9,
+            pointer: {
+                length: 0.6,
+                strokeWidth: 0.05,
+                color: '#000000'
+            },
+            staticLabels: {
+                font: "10px sans-serif",
+                labels: [20, 40, 60, 80],
+                fractionDigits: 0
+            },
+            staticZones: [
+                {strokeStyle: "#30B32D", min: 0, max: 60},
+                {strokeStyle: "#FFDD00", min: 60, max: 80},
+                {strokeStyle: "#F03E3E", min: 80, max: 100},
+            ],
+            limitMax: false,
+            limitMin: false,
+            highDpiSupport: true
+        };
+        airSpeedGauge.minValue = 0
+        airSpeedGauge.maxValue = 100
+        airSpeedGauge.set(40)
+        airSpeedGauge.setOptions(airSpeedOpts)
+        
+        var motorRpmOpts = {
+            angle: -0.25,
+            lineWidth: 0.2,
+            radiusScale:0.9,
+            pointer: {
+                length: 0.6,
+                strokeWidth: 0.05,
+                color: '#000000'
+            },
+            staticLabels: {
+                font: "10px sans-serif",
+                labels: [3000, 6000, 9000, 12000],
+                fractionDigits: 0
+            },
+            staticZones: [
+                {strokeStyle: "#30B32D", min: 0, max: 10000},
+                {strokeStyle: "#FFDD00", min: 10000, max: 12000},
+                {strokeStyle: "#F03E3E", min: 12000, max: 15000}
+            ],
+            limitMax: false,
+            limitMin: false,
+            highDpiSupport: true
+        };
+        motorRpmGauge.minValue = 0
+        motorRpmGauge.maxValue = 15000
+        motorRpmGauge.set(9000)
+        motorRpmGauge.setOptions(motorRpmOpts)
+        
+        var vertSpeedOpts = {
+            angle: -0.25,
+            lineWidth: 0.2,
+            radiusScale:0.9,
+            pointer: {
+                length: 0.6,
+                strokeWidth: 0.05,
+                color: '#000000'
+            },
+            staticLabels: {
+                font: "10px sans-serif",
+                labels: [100, 300, 500, 700, 900, 1100, 1300],
+                fractionDigits: 0
+            },
+            staticZones: [
+                {strokeStyle: "#30B32D", min: 0, max: 500},
+                {strokeStyle: "#FFDD00", min: 500, max: 1100},
+                {strokeStyle: "#F03E3E", min: 1100, max: 1500}
+            ],
+            limitMax: false,
+            limitMin: false,
+            highDpiSupport: true
+        };
+        vertSpeedGauge.minValue = 0
+        vertSpeedGauge.maxValue = 1500
+        vertSpeedGauge.set(700)
+        vertSpeedGauge.setOptions(vertSpeedOpts)
+        
+
+    </script>
+</body>
+
+</html>

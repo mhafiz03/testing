@@ -7,10 +7,9 @@
 
 ## 2. Buatlah program website sederhana (bebas menggunakan bahasa apapun)
 
-[Source code ada di sini](website_sederhana)
+![](images/website.jpg)
 
-#### Cara menjalankan
-Pastikan python sudah di install
+[Source code ada di sini](website_sederhana)
 
 ```bash
 git clone https://github.com/mhafiz03/testing
@@ -21,6 +20,8 @@ python -m http.server
 Buka http://localhost:8000 di web browser
 
 ## 3. Buatkan program crud menggunakan bahasa python
+
+![](images/crud.png)
 
 [Source code ada di sini](simple_crud_python)
 

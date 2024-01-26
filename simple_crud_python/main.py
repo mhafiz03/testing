@@ -2,56 +2,54 @@ import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QListWidget, QPushButton, QLineEdit, QLabel
 
 
-class TodoApp(QWidget):
+class App(QWidget):
     def __init__(self):
-        self.init_ui()
-
-    def init_ui(self):
+        super().__init__()
         self.todo_list = QListWidget()
 
         self.input_text = QLineEdit()
-        self.add_button = QPushButton('Add')
-        self.add_button.clicked.connect(self.add_todo)
 
-        self.delete_button = QPushButton('Delete')
-        self.delete_button.clicked.connect(self.delete_todo)
+        self.tombol_tambah = QPushButton('Tambah')
+        self.tombol_tambah.clicked.connect(self.tambah_list)
 
-        self.status_label = QLabel()
+        self.tombol_hapus = QPushButton('Hapus')
+        self.tombol_hapus.clicked.connect(self.hapus_list)
+
+        self.label_status = QLabel()
 
         hbox = QHBoxLayout()
         hbox.addWidget(self.input_text)
-        hbox.addWidget(self.add_button)
-        hbox.addWidget(self.delete_button)
+        hbox.addWidget(self.tombol_tambah)
+        hbox.addWidget(self.tombol_hapus)
 
         vbox = QVBoxLayout()
         vbox.addWidget(self.todo_list)
         vbox.addLayout(hbox)
-        vbox.addWidget(self.status_label)
+        vbox.addWidget(self.label_status)
 
         self.setLayout(vbox)
+        self.setWindowTitle('Program Python CRUD')
+        self.setMinimumSize(800, 600)
 
-        self.setWindowTitle('To-Do List')
-        self.show()
-
-    def add_todo(self):
+    def tambah_list(self):
         todo_text = self.input_text.text().strip()
         if todo_text:
             self.todo_list.addItem(todo_text)
             self.input_text.clear()
-            self.status_label.setText('Task added successfully.')
+            self.label_status.setText('Berhasil ditambah.')
         else:
-            self.status_label.setText('Please enter a task.')
+            self.label_status.setText('Tolong tulis sesuatu.')
 
-    def delete_todo(self):
+    def hapus_list(self):
         selected_item = self.todo_list.currentItem()
         if selected_item:
             self.todo_list.takeItem(self.todo_list.row(selected_item))
-            self.status_label.setText('Task deleted successfully.')
+            self.label_status.setText('Berhasil dihapus.')
         else:
-            self.status_label.setText('Select a task to delete.')
+            self.label_status.setText('Tolong milih yang ingin dihapus.')
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    todo_app = TodoApp()
-    sys.exit(app.exec_())
+app = QApplication(sys.argv)
+todo_app = App()
+todo_app.show()
+sys.exit(app.exec_())
