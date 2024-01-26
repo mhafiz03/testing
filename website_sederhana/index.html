@@ -51,14 +51,13 @@
     
     <script src="gauge.min.js"></script>
     <script type="text/javascript">
-        airSpeedGauge = new Gauge(document.getElementById("canvas-air-speed"));
-        motorRpmGauge = new Gauge(document.getElementById("canvas-motor-rpm"));
-        vertSpeedGauge = new Gauge(document.getElementById("canvas-vert-speed"));
+        function initializeGauge(canvasId, minValue, maxValue, currentValue, labels, zones) {
+        const gauge = new Gauge(document.getElementById(`canvas-${canvasId}`));
 
-        var airSpeedOpts = {
+        const options = {
             angle: -0.25,
             lineWidth: 0.2,
-            radiusScale:0.9,
+            radiusScale: 0.9,
             pointer: {
                 length: 0.6,
                 strokeWidth: 0.05,
@@ -66,78 +65,38 @@
             },
             staticLabels: {
                 font: "10px sans-serif",
-                labels: [20, 40, 60, 80],
+                labels: labels,
                 fractionDigits: 0
             },
-            staticZones: [
-                {strokeStyle: "#30B32D", min: 0, max: 60},
-                {strokeStyle: "#FFDD00", min: 60, max: 80},
-                {strokeStyle: "#F03E3E", min: 80, max: 100},
-            ],
+            staticZones: zones,
             limitMax: false,
             limitMin: false,
             highDpiSupport: true
         };
-        airSpeedGauge.minValue = 0
-        airSpeedGauge.maxValue = 100
-        airSpeedGauge.set(40)
-        airSpeedGauge.setOptions(airSpeedOpts)
-        
-        var motorRpmOpts = {
-            angle: -0.25,
-            lineWidth: 0.2,
-            radiusScale:0.9,
-            pointer: {
-                length: 0.6,
-                strokeWidth: 0.05,
-                color: '#000000'
-            },
-            staticLabels: {
-                font: "10px sans-serif",
-                labels: [3000, 6000, 9000, 12000],
-                fractionDigits: 0
-            },
-            staticZones: [
-                {strokeStyle: "#30B32D", min: 0, max: 10000},
-                {strokeStyle: "#FFDD00", min: 10000, max: 12000},
-                {strokeStyle: "#F03E3E", min: 12000, max: 15000}
-            ],
-            limitMax: false,
-            limitMin: false,
-            highDpiSupport: true
-        };
-        motorRpmGauge.minValue = 0
-        motorRpmGauge.maxValue = 15000
-        motorRpmGauge.set(9000)
-        motorRpmGauge.setOptions(motorRpmOpts)
-        
-        var vertSpeedOpts = {
-            angle: -0.25,
-            lineWidth: 0.2,
-            radiusScale:0.9,
-            pointer: {
-                length: 0.6,
-                strokeWidth: 0.05,
-                color: '#000000'
-            },
-            staticLabels: {
-                font: "10px sans-serif",
-                labels: [100, 300, 500, 700, 900, 1100, 1300],
-                fractionDigits: 0
-            },
-            staticZones: [
-                {strokeStyle: "#30B32D", min: 0, max: 500},
-                {strokeStyle: "#FFDD00", min: 500, max: 1100},
-                {strokeStyle: "#F03E3E", min: 1100, max: 1500}
-            ],
-            limitMax: false,
-            limitMin: false,
-            highDpiSupport: true
-        };
-        vertSpeedGauge.minValue = 0
-        vertSpeedGauge.maxValue = 1500
-        vertSpeedGauge.set(700)
-        vertSpeedGauge.setOptions(vertSpeedOpts)
+
+        gauge.minValue = 0;
+        gauge.maxValue = maxValue;
+        gauge.set(currentValue);
+        gauge.setOptions(options);
+        }
+
+        initializeGauge("air-speed", 0, 100, 40, [20, 40, 60, 80], [
+            { strokeStyle: "#30B32D", min: 0, max: 60 },
+            { strokeStyle: "#FFDD00", min: 60, max: 80 },
+            { strokeStyle: "#F03E3E", min: 80, max: 100 },
+        ]);
+
+        initializeGauge("motor-rpm", 0, 15000, 9000, [3000, 6000, 9000, 12000], [
+            { strokeStyle: "#30B32D", min: 0, max: 10000 },
+            { strokeStyle: "#FFDD00", min: 10000, max: 12000 },
+            { strokeStyle: "#F03E3E", min: 12000, max: 15000 },
+        ]);
+
+        initializeGauge("vert-speed", 0, 1500, 700, [100, 300, 500, 700, 900, 1100, 1300], [
+            { strokeStyle: "#30B32D", min: 0, max: 500 },
+            { strokeStyle: "#FFDD00", min: 500, max: 1100 },
+            { strokeStyle: "#F03E3E", min: 1100, max: 1500 },
+        ]);
         
 
     </script>
