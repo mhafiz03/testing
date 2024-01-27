@@ -32,6 +32,8 @@ curl 127.0.0.1:8000/update?vert_speed=600
 curl 127.0.0.1:8000/update?air_speed=50&motor_rpm=7500&vert_speed=1000
 ```
 
+Refresh web page untuk melihat data yang baru di-update, karena saya belum mengimplementasi polling di javascript :/
+
 ## 3. Buatkan program crud menggunakan bahasa python
 
 ![](images/crud.png)
