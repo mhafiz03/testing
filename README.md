@@ -11,13 +11,26 @@
 
 [Source code ada di sini](website_sederhana)
 
+#### Cara menjalankan
+
 ```bash
 git clone https://github.com/mhafiz03/testing
 cd testing/website_sederhana
-python -m http.server
+pip install aiohttp
+python main.py
 ```
 
 Buka http://localhost:8000 di web browser
+
+
+#### Cara mengubah data saat server jalan
+
+```bash
+curl 127.0.0.1:8000/update?air_speed=30
+curl 127.0.0.1:8000/update?motor_rpm=9000
+curl 127.0.0.1:8000/update?vert_speed=600
+curl 127.0.0.1:8000/update?air_speed=50&motor_rpm=7500&vert_speed=1000
+```
 
 ## 3. Buatkan program crud menggunakan bahasa python
 
@@ -26,7 +39,6 @@ Buka http://localhost:8000 di web browser
 [Source code ada di sini](simple_crud_python)
 
 #### Cara menjalankan
-Pastikan python sudah di install
 
 ```bash
 git clone https://github.com/mhafiz03/testing
