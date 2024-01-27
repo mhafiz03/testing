@@ -49,50 +49,51 @@
         </div>
     </div>
     
-    <script src="gauge.min.js"></script>
+    <script src="./gauge.min.js"></script>
     <script type="text/javascript">
         function initializeGauge(canvasId, minValue, maxValue, currentValue, labels, zones) {
-        const gauge = new Gauge(document.getElementById(`canvas-${canvasId}`));
+            const gauge = new Gauge(document.getElementById(`canvas-${canvasId}`));
 
-        const options = {
-            angle: -0.25,
-            lineWidth: 0.2,
-            radiusScale: 0.9,
-            pointer: {
-                length: 0.6,
-                strokeWidth: 0.05,
-                color: '#000000'
-            },
-            staticLabels: {
-                font: "10px sans-serif",
-                labels: labels,
-                fractionDigits: 0
-            },
-            staticZones: zones,
-            limitMax: false,
-            limitMin: false,
-            highDpiSupport: true
-        };
+            const options = {
+                angle: -0.25,
+                lineWidth: 0.2,
+                radiusScale: 0.9,
+                pointer: {
+                    length: 0.6,
+                    strokeWidth: 0.05,
+                    color: '#000000'
+                },
+                staticLabels: {
+                    font: "10px sans-serif",
+                    labels: labels,
+                    fractionDigits: 0
+                },
+                staticZones: zones,
+            };
 
-        gauge.minValue = 0;
-        gauge.maxValue = maxValue;
-        gauge.set(currentValue);
-        gauge.setOptions(options);
+            gauge.minValue = 0;
+            gauge.maxValue = maxValue;
+            gauge.set(currentValue);
+            gauge.setOptions(options);
         }
 
-        initializeGauge("air-speed", 0, 100, 40, [20, 40, 60, 80], [
+        airSpeedCurVal = 40;
+        motorRpmCurVal = 9000;
+        vertSpeedCurVal = 700;
+
+        initializeGauge("air-speed", 0, 100, airSpeedCurVal, [20, 40, 60, 80], [
             { strokeStyle: "#30B32D", min: 0, max: 60 },
             { strokeStyle: "#FFDD00", min: 60, max: 80 },
             { strokeStyle: "#F03E3E", min: 80, max: 100 },
         ]);
 
-        initializeGauge("motor-rpm", 0, 15000, 9000, [3000, 6000, 9000, 12000], [
+        initializeGauge("motor-rpm", 0, 15000, motorRpmCurVal, [3000, 6000, 9000, 12000], [
             { strokeStyle: "#30B32D", min: 0, max: 10000 },
             { strokeStyle: "#FFDD00", min: 10000, max: 12000 },
             { strokeStyle: "#F03E3E", min: 12000, max: 15000 },
         ]);
 
-        initializeGauge("vert-speed", 0, 1500, 700, [100, 300, 500, 700, 900, 1100, 1300], [
+        initializeGauge("vert-speed", 0, 1500, vertSpeedCurVal, [100, 300, 500, 700, 900, 1100, 1300], [
             { strokeStyle: "#30B32D", min: 0, max: 500 },
             { strokeStyle: "#FFDD00", min: 500, max: 1100 },
             { strokeStyle: "#F03E3E", min: 1100, max: 1500 },
