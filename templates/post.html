@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<script>
+    function sendData() {
+        var inputData = {
+            angle: 56
+        };
+        fetch('/process_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(inputData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from Flask:', data);
+        })
+        .catch(error => {
+            console.error('Error sending data to Flask:', error);
+        });
+    }
+
+    sendData();
+</script>
+
+</body>
+</html>
