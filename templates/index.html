@@ -398,6 +398,7 @@
             document.getElementById('longitudeBottom').textContent = pointerLng;
             var bearing = calculateBearing(trackerMarker[0], trackerMarker[1], pointerLat, pointerLng);
             drawIndicator(bearing);
+            sendData(bearing);
         });
 
         function calculateBearing(lat1, lon1, lat2, lon2) {
@@ -694,7 +695,7 @@
         }
 
         // Start the animation
-        animate();
+        // animate();
 
         // function setBearingGauge() {
         //     drawIndicator(0);
@@ -711,6 +712,25 @@
         //     };
         //     bearingGauge.setOptions(opts);
         // }
+        function sendData(ang) {
+        var inputData = {
+            angle: ang
+        };
+        fetch('/process_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(inputData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response from Flask:', data);
+        })
+        .catch(error => {
+            console.error('Error sending data to Flask:', error);
+        });
+    }
     </script>
 
 </body>
