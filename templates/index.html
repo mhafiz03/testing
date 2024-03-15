@@ -234,7 +234,7 @@
 
 
     <div id="hud-menu" class="floating-menu" style="display: none;">
-        <img id="cam" src="{{ url_for('video') }}">
+        <!-- <img id="cam" src="{{ url_for('video') }}"> -->
         <table>
             <thead>
                 <tr>
@@ -385,9 +385,9 @@
             }
         }
 
-        document.getElementById('cam').onerror = function () {
-            this.src = 'kucing.jpg';
-        };
+        // document.getElementById('cam').onerror = function () {
+        //     this.src = 'kucing.jpg';
+        // };
 
         let pointerLat;
         let pointerLng;
